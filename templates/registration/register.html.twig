@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Register{% endblock %}</title>
+    <link rel="stylesheet" href=" {{ asset('css/style.css')}} ">
+    {% block script %}
+    {% endblock %}
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}
+</head>
+<body>
+<header>
+    {% block header %}
+        <div class="header_logo">Vi</div>
+        <ul>
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            <button class="logout"><a href="{{ path('app_logout') }}">Выйти</a></button>
+        {% else %}
+            <button class="singin"><a href="{{ path('app_login') }}">Войти</a></button>
+            <button class="register"><a href="{{ path('app_register') }}">Регистрация</a></button>
+        {% endif %}
+        </ul>
+    {% endblock %}
+</header>
+
+{% block body %}
+    {% for flash_error in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+    {% endfor %}
+
+    <h1>Register</h1>
+
+    {{ form_start(registrationForm) }}
+    {{ form_row(registrationForm.email) }}
+    {{ form_row(registrationForm.plainPassword, {
+        label: 'Password'
+    }) }}
+    {{ form_row(registrationForm.agreeTerms) }}
+
+    <button type="submit" class="btn">Register</button>
+    {{ form_end(registrationForm) }}
+{% endblock %}
+
+
+<footer>FOOTER</footer>
+</body>
+</html>
+

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="stylesheet" href=" {{ asset('css/style.css')}} ">
+        {% block script %}
+        {% endblock %}
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+    </head>
+    <body>
+        <header>
+            {% block header %}
+                <div class="header_logo">Vi</div>
+                <nav>
+                    <ul>
+                        <li><a href="{{ path('home') }}">Главная</a></li>
+                        <li><a href="{{ path('add_video') }}">Добавить видео</a></li>
+                        <li><a href=" {{ path('video') }}">Мои видео</a></li>
+                    </ul>
+                </nav>
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <button class="logout"><a href="{{ path('app_logout') }}">Выйти</a></button>
+                {% else %}
+                <button class="singin"><a href="{{ path('app_login') }}">Войти</a></button>
+                <button class="register"><a href="{{ path('app_register') }}">Регистрация</a></button>
+                {% endif %}
+            {% endblock %}
+        </header>
+
+        <div class="center_block_main">
+
+            <aside>
+                {% block sidebar %}
+                    <ul>
+                        <li><a href="{{ path('add_video') }}">Добавить видео</a></li>
+                        <li><a href="{{ path('add_category') }}">Добавить категорию</a></li>
+                    </ul>
+                {% endblock %}
+            </aside>
+
+            <main>
+                {% block body %}
+                {% endblock %}
+            </main>
+        </div>
+
+    <footer>FOOTER</footer>
+    </body>
+</html>

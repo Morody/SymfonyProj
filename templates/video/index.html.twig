@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Video catalog{% endblock %}
+
+{% block body %}
+    <h1>Video catalog</h1>
+    <div class="content">
+        {% for video in videos %}
+        <div class="content_item">
+            <h2><a href="{{ path('show_video', {'youtube_id': video.youtubeId}) }}">{{ video.title }}</a></h2>
+            <iframe src="https://www.youtube.com/embed/{{ video.youtubeId }}" frameborder="0"></iframe>
+        </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}
