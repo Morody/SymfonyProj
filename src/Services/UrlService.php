@@ -11,18 +11,17 @@ use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 class UrlService{
-    private $video;
-    public function __construct($video)
+    private $id;
+    public function __construct($id)
     {
-        $this->video = $video;
+        $this->id = $id;
     }
 
     public function getUrl(){
         $urlPackage = new UrlPackage(
             'https://www.youtube.com/embed/',
             new StaticVersionStrategy(''));
-        $url = $urlPackage->getUrl('/'.$this->video[0]->youtube_id);
-        $_SESSION['Video'] = $this->video[0];
+        $url = $urlPackage->getUrl('/'.$this->id);
         return $url;
     }
 }

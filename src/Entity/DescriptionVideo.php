@@ -17,6 +17,7 @@ class DescriptionVideo
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
+
     #[ORM\ManyToOne(targetEntity: Video::class, inversedBy: 'description')]
     private $video;
 

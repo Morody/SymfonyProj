@@ -19,6 +19,11 @@ class Category
     #[ORM\OneToMany(mappedBy: 'category', targetEntity: Video::class)]
     private $video;
 
+    public function __construct($title)
+    {
+        $this->title = $title;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

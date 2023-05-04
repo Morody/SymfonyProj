@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controller;
+use App\Entity\DescriptionVideo;
 use App\Entity\Page;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -13,7 +14,9 @@ class PageController extends AbstractController
     #[Route('/home', name: 'home')]
     public function index(EntityManagerInterface $entityManager, UserInterface $user): Response
     {
-        $homePage = $entityManager->getRepository(Page::class)->find(1);
+        $desc = new DescriptionVideo('gsdf','Xg8Z-99CIHQ', $user);
+        $entityManager->detach($desc);
+        print($entityManager->getUnitOfWork()->getEntityState($desc));
 
         return $this->render('page/index.html.twig', ['user'=>$user]);
     }

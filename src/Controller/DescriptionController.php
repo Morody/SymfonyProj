@@ -20,9 +20,12 @@ class DescriptionController extends AbstractController
     public function index(EntityManagerInterface $entityManager, UserInterface $user, Request $request): Response
     {
         $comment = $request->get('comment');
-            $desc = new DescriptionVideo($comment, $_SESSION['Video'], $user);
-            $entityManager->merge($desc);
-            $entityManager->flush();
-            return new Response('Ok');
+        $desc = new DescriptionVideo($comment, $_SESSION['Video'], $user);
+
+
+        $entityManager->merge($desc);
+
+        $entityManager->flush();
+        return new Response('Ok');
     }
 }

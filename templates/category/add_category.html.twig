@@ -3,5 +3,9 @@
 {% block title %}Hello CategoryController!{% endblock %}
 
 {% block body %}
-    Add Category
+    <form action="{{ path('add_category') }}" method="post">
+        <input type="text" name="category">
+        <input type="submit">
+    </form>
+
 {% endblock %}

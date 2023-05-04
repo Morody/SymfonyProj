@@ -17,19 +17,27 @@ class Video
     private ?string $title = null;
 
     #[ORM\Column]
-    private ?int $category_id = null;
+    #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'video')]
+    public ?int $category;
 
     #[ORM\Column(length: 255)]
     public ?string $youtube_id = null;
 
-    #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'video')]
-    private $category;
 
     #[ORM\OneToMany(mappedBy: 'video', targetEntity: DescriptionVideo::class)]
     private $description;
 
-    #[ORM\ManyToOne(targetEntity: User::class,inversedBy: 'video')]
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: "video")]
     public $own_video;
+
+    public function __construct($title,$youtube_id,$own_video)
+    {
+        $this->title = $title;
+        $this->category = 5;
+        $this->youtube_id = $youtube_id;
+        $this->own_video = $own_video;
+    }
+
 
     public function getId(): ?int
     {
@@ -50,12 +58,12 @@ class Video
 
     public function getCategoryId(): ?int
     {
-        return $this->category_id;
+        return $this->category;
     }
 
-    public function setCategoryId(int $category_id): self
+    public function setCategoryId(int $category): self
     {
-        $this->category_id = $category_id;
+        $this->category = $category;
 
         return $this;
     }
