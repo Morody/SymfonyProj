@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <title>Registr</title>
+    <link rel="stylesheet" href="{{ asset('css/styleRegistr.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
+    {% block script %}
+    {% endblock %}
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}
+</head>
+<body>
+{% block body %}
+
+    {% for flash_error in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+    {% endfor %}
+
+    <div class="WrapMenu">
+        <div class="main">
+
+
+            <div class="signup">
+                {{ form_start(registrationForm) }}
+                {{ form_row(registrationForm.email,{
+                    label: 'Registration'
+                }) }}
+                {{ form_row(registrationForm.plainPassword, {
+                    label: false
+                }) }}
+
+                {{ form_label(registrationForm, 'Agree terms', {'label_attr': {'style': 'font-size: 10px; margin: 0'}}) }}
+                {{ form_row(registrationForm.agreeTerms,{
+                    label: false
+                }) }}
+
+
+<button type="submit" class="btn registrButton">Register</button>
+                {{ form_end(registrationForm) }}
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
+</body>
+</html>

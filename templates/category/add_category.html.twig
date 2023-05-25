@@ -1,11 +1,24 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello CategoryController!{% endblock %}
+{% block script %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+{% endblock %}
+
+{% block head %}
+    <title> Add video</title>
+    <link rel="stylesheet" href="{{ asset('css/styleAddVideo.css') }}">
+    <link rel="icon" sizes="32x32" href="{{ asset('img/favicon.jpg') }}">
+{% endblock %}
 
 {% block body %}
+<h1>Добавить или изменить категорию</h1>
+<div class="content">
+    <div class="srch-box">
     <form action="{{ path('add_category') }}" method="post">
-        <input type="text" name="category">
-        <input type="submit">
+        <input type="text" name="category" class="search-txt" placeholder="Впишите категорию">
+        <input  class="search-btn" type="submit">
     </form>
+    </div>
+</div>
 
 {% endblock %}

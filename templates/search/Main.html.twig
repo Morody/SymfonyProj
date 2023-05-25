@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <title> Главная </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ asset('css/styleMain.css') }}">
+    <link rel="icon" sizes="16x16" href="favicon-32x32.png">
+
+    {% block script %}
+    {% endblock %}
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}
+</head>
+<body>
+
+    <div class="page">
+
+        <header>
+            {% block header %}
+            <div class="logo"><img src="android-chrome-192x192.png" width="60px" height="45px"></div>
+
+            <div class="LeftButton">
+                <div><a class="button" href="{{ path('home') }}">Главная</a></div>
+                <div><a class="button" href="{{ path('category') }}">Категории</a></div>
+                <div><a class="button" href=" {{ path('video') }}">Мои видео</a></div>
+                <div><a class="button" href="{{ path('add_video') }}">Добавить видео</a></div>
+            </div>
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            <div class="RightButton">
+                <div><a class="button" href="{{ path('app_logout') }}">Выйти</a></div>
+            {% else %}
+                <div><a class="button" href="{{ path('app_login') }}">Войти</a></div>
+                <div><a class="button" style="background: #0d4382" href="{{ path('app_register') }}">Регистрация</a></div>
+            </div>
+            {% endif %}
+            {% endblock %}
+        </header>
+
+       
+
+           <div class="content">
+               <div class="search-box">
+                    <input type="text" name="search" class="search-txt" placeholder="Type to search" />
+                    <input type="submit" class="search-btn">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                    </input>
+                </div>
+            </div>
+               
+           
+            <div class="videos">
+                    <iframe width="560" height="315"
+                    src="https://www.youtube.com/embed/JBxqC7XuecM">
+            </iframe>
+            <iframe width="560" height="315"
+                    src="https://www.youtube.com/embed/JBxqC7XuecM">
+            </iframe>
+            <iframe width="560" height="315"
+                    src="https://www.youtube.com/embed/JBxqC7XuecM">
+            </iframe>
+            <iframe width="560" height="315"
+                    src="https://www.youtube.com/embed/JBxqC7XuecM">
+            </iframe>
+            <iframe width="560" height="315"
+                    src="https://www.youtube.com/embed/JBxqC7XuecM">
+            </iframe>
+            <iframe width="560" height="315"
+                    src="https://www.youtube.com/embed/JBxqC7XuecM">
+            </iframe>
+                    </div>
+
+        
+
+        <footer class="footer">
+            <div class="footer-content">
+                <a>2023 Видеохостинг "CopyTube"</a>
+            </div>
+        </footer>
+
+    </div>
+</body>
+</html>

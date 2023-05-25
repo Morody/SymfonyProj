@@ -1,56 +1,57 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="stylesheet" href=" {{ asset('css/style.css')}} ">
-        {% block script %}
+<html lang="ru">
+<head>
+    <title> Главная </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ asset('css/styleMain.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="icon" sizes="16x16" href="{{  asset('img/favicon.jpg') }}">
+{% block head %}
+    {% endblock %}
+
+    {% block script %}
+    {% endblock %}
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}
+</head>
+
+<div class="page">
+
+    <header>
+        {% block header %}
+            <div class="logo"><img src="{{ asset('img/favicon.jpg') }}" width="60px" height="45px"></div>
+
+            <div class="LeftButton">
+                <div><a class="button" href="{{ path('home') }}">Главная</a></div>
+                <div><a class="button" href="{{ path('category') }}">Категории</a></div>
+                <div><a class="button" href=" {{ path('video') }}">Мои видео</a></div>
+                <div><a class="button" href="{{ path('add_video') }}">Добавить видео</a></div>
+                <div><a class="button" href="{{ path('add_category') }}">Добавить категорию</a></div>
+                <div><a class="button" href="{{ path('app_search') }}">Поиск</a></div>
+            </div>
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <div class="RightButton">
+                <div><a class="button" href="{{ path('app_logout') }}">Выйти</a></div>
+            {% else %}
+                <div><a class="button" href="{{ path('app_login') }}">Войти</a></div>
+                <div><a class="button" style="background: #0d4382" href="{{ path('app_register') }}">Регистрация</a></div>
+                </div>
+            {% endif %}
         {% endblock %}
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
+    </header>
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
-    </head>
-    <body>
-        <header>
-            {% block header %}
-                <div class="header_logo">Vi</div>
-                <nav>
-                    <ul>
-                        <li><a href="{{ path('home') }}">Главная</a></li>
-                        <li><a href="{{ path('add_video') }}">Добавить видео</a></li>
-                        <li><a href=" {{ path('video') }}">Мои видео</a></li>
-                    </ul>
-                </nav>
-                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                <button class="logout"><a href="{{ path('app_logout') }}">Выйти</a></button>
-                {% else %}
-                <button class="singin"><a href="{{ path('app_login') }}">Войти</a></button>
-                <button class="register"><a href="{{ path('app_register') }}">Регистрация</a></button>
-                {% endif %}
-            {% endblock %}
-        </header>
+    {% block body %}
+    {% endblock %}
 
-        <div class="center_block_main">
-
-            <aside>
-                {% block sidebar %}
-                    <ul>
-                        <li><a href="{{ path('add_video') }}">Добавить видео</a></li>
-                        <li><a href="{{ path('add_category') }}">Добавить категорию</a></li>
-                    </ul>
-                {% endblock %}
-            </aside>
-
-            <main>
-                {% block body %}
-                {% endblock %}
-            </main>
+    <footer class="footer">
+        <div class="footer-content">
+            <a>2023 Видеохостинг "CopyTube"</a>
         </div>
-
-    <footer>FOOTER</footer>
-    </body>
+    </footer>
+    </div>
 </html>

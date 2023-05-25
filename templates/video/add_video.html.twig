@@ -1,13 +1,24 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello VideoController!{% endblock %}
 {% block script %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 {% endblock %}
+
+{% block head %}
+    <title> Add video</title>
+    <link rel="stylesheet" href="{{ asset('css/styleAddVideo.css') }}">
+    <link rel="icon" sizes="32x32" href="{{ asset('img/favicon.jpg') }}">
+{% endblock %}
+
 {% block body %}
     <h1>Добавить видео в коллекцию</h1>
-    <form action="{{ path('add_video') }}" method="post">
-        <input type="text" name="add_video" placeholder="Вставьте ссылку видео">
-        <input type="submit">
-    </form>
+<div class="content">
+
+    <div class="srch-box">
+        <form action="{{ path('add_video') }}" method="post">
+            <input type="text" name="add_video" class="search-txt" placeholder="Вставьте ссылку видео">
+            <input class="search-btn" type="submit">
+        </form>
+    </div>
+</div>
 {% endblock %}

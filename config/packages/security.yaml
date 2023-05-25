@@ -41,7 +41,7 @@ security:
             form_login:
                 login_path: /login
                 check_path: /login_check
-                default_target_path: /login
+                default_target_path: /home
                 username_parameter: email
                 password_parameter: password
             logout:

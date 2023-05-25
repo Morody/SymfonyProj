@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Search{% endblock %}
+{% block script %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+{% endblock %}
+{% block body %}
+
+    <div class="page">
+        <form action="{{ path('app_search') }}" method="post">
+            <div class="content">
+                <div class="search-box">
+                    <input type="text" name="search" class="search-txt" placeholder="Type to search" />
+                    <button class="search-btn"><i class="fa fa-search" aria-hidden="true"></i></button>
+                </div>
+            </div>
+        </form>
+        {% if videos is defined %}
+        <div class="videos">
+            {% for video in videos%}
+                <div class="content_item">
+                    <h2><a href="{{ path('show_video', {'youtube_id': video.id}) }}" id="title" name="{{ video.id }}" style="overflow-wrap: break-word" onclick="getTitle(this)">{{ video.title }} </a></h2>
+                    <iframe src="https://www.youtube.com/embed/{{ video.id }}" frameborder="0" height="300" width="500"></iframe>
+                </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        <script>function getTitle(a) {
+                let title = a.textContent;
+                let id = a.getAttribute('name');
+                console.log(title);
+                $.ajax({
+                    url: `/video/${id}`,
+                    type: 'POST',
+                    data: {title: title},
+                    success: function (data) {
+                    },
+                })
+            }
+        </script>
+    </div>
+{% endblock %}

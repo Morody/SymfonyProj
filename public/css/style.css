@@ -101,9 +101,8 @@ aside ul li a:hover {
 main{
     padding: 20px;
     display: flex;
-    flex-grow: 1;
     flex-direction: column;
-
+    flex: 1 0 auto;
 }
 
 main h1{
@@ -116,9 +115,11 @@ footer {
     padding: 10px 0;
     width: 100%;
     background: #232423;
-    position: absolute;
-    left: 0;
-    bottom: 0;
+    flex: 0 0 auto;
+    /*position: absolute;*/
+    /*left: 0;*/
+    /*bottom: 0;*/
+
 }
 
 header .signin{
@@ -158,12 +159,13 @@ main iframe{
 
 
 main .disclosure{
-    color: black;
     cursor: pointer;
     width: 200px;
     font-size: 15px;
     padding: 10px;
     border: none;
+    background-color: #0f0c29;
+    color: #E8E8E8;
     transition: 0.15s ease-out;
     font-family: Roboto, Arial, sans-serif;
     font-weight: bold;
@@ -189,7 +191,7 @@ main .add_comment{
     height: 30px;
     width: 500px;
     border: none;
-    background-color: #fff;
+    background-color: #302b63;
     border-bottom: 2px solid #bdbdbd;
     color: #212529;
     margin-bottom: 20px;
@@ -206,7 +208,7 @@ main .submit_comm{
     background-color: #bdbdbd;
     width: 200px;
     height: 40px;
-    color: #E8E8E8;
+    color: #302b63;
     border-radius: 10px;
     transition: 0.21s ease-in-out;
 }
@@ -219,4 +221,16 @@ main .submit_comm:hover{
     background-color: #065fd4;
     color: white;
     cursor: pointer;
+}
+
+
+.categories{
+    padding: 20px;
+}
+
+.categories ul li a{
+    font-weight: 900;
+    color: #f3f3f3;
+    font-family: Roboto, sans-serif;
+    text-decoration: none;
 }

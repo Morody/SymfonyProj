@@ -16,7 +16,6 @@ class PageController extends AbstractController
     {
         $desc = new DescriptionVideo('gsdf','Xg8Z-99CIHQ', $user);
         $entityManager->detach($desc);
-        print($entityManager->getUnitOfWork()->getEntityState($desc));
 
         return $this->render('page/index.html.twig', ['user'=>$user]);
     }

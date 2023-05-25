@@ -4,17 +4,26 @@
 {% block script %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="{{ asset('js/ajax.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('css/stylePageVideo.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="icon" sizes="16x16" href="{{ asset('img/favicon.jpg') }}">
 {% endblock %}
 {% block body %}
-    <h1>Video</h1>
-    <iframe src="{{ video }}" frameborder="0" height="450"
-    width="750"></iframe>
-    <div class="category">
-        <p> Category: {{ category }} </p>
-        <p><a href="{{ path('add_category') }}">Изменить</a></p>
+    <main>
+    <div class="video">
+        <iframe src="{{ video }}" frameborder="0" height="450"
+        width="750"></iframe>
     </div>
-    <input type="text" class="add_comment" placeholder="Введите текст комментария">
-    <button type="submit" class="submit_comm" id="sub">Оставить комментарий</button>
-    <button class="disclosure">Комментарии</button>
-    <div class="description" id="desc"></div>
+
+    <div class="content">
+        <div class="category">
+            <p> Category: {{ category }} </p>
+            <p><a href="{{ path('add_category') }}">Изменить</a></p>
+        </div>
+        <input type="text" class="add_comment" placeholder="Введите текст комментария">
+        <button type="submit" class="submit_comm" id="sub">Оставить комментарий</button>
+        <button class="disclosure">Комментарии</button>
+        <div class="description" id="desc"></div>
+    </div>
+    </main>
 {% endblock %}
